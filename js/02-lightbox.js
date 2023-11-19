@@ -9,10 +9,11 @@ const cardsMarcup = createMarcup(galleryItems);
 marcupConteiner.addEventListener("click", onClick);
 
 marcupConteiner.insertAdjacentHTML("beforeend", cardsMarcup);
-let gallery = new SimpleLightbox(".gallery a");
-gallery.on("show.simplelightbox");
 
-// gallery.on("error.simplelightbox");
+const gallery = new SimpleLightbox(".gallery a");
+gallery.on("show.simplelightbox");
+gallery.options.captionsData = "alt";
+gallery.options.captionDelay = "250";
 
 function onClick(event) {
   const { target = event.target } = event;
@@ -21,7 +22,7 @@ function onClick(event) {
     return;
   }
   // with jQuery nearly the same
-  let gallery = $(".gallery a").simpleLightbox();
+  const gallery = $(".gallery a").simpleLightbox();
   gallery.on("show.simplelightbox");
 }
 
