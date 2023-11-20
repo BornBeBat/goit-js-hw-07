@@ -6,25 +6,13 @@ console.log(galleryItems);
 const marcupConteiner = document.querySelector(".gallery");
 const cardsMarcup = createMarcup(galleryItems);
 
-marcupConteiner.addEventListener("click", onClick);
-
 marcupConteiner.insertAdjacentHTML("beforeend", cardsMarcup);
 
-const gallery = new SimpleLightbox(".gallery a");
+const gallery = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionDelay: "250",
+});
 gallery.on("show.simplelightbox");
-gallery.options.captionsData = "alt";
-gallery.options.captionDelay = "250";
-
-function onClick(event) {
-  const { target = event.target } = event;
-  event.preventDefault();
-  if (!target.classList.contains("gallery__image")) {
-    return;
-  }
-  // with jQuery nearly the same
-  const gallery = $(".gallery a").simpleLightbox();
-  gallery.on("show.simplelightbox");
-}
 
 function createMarcup(images) {
   const marcup = images.map(({ preview, original, description }) => {
