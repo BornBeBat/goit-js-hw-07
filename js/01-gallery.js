@@ -15,7 +15,14 @@ function onClick(event) {
   const lightBox = basicLightbox.create(
     `<img src="${target.dataset.source}" width="800" height="600">`
   );
+
   lightBox.show();
+  document.addEventListener("keydown", (event) => {
+    if (!(event.key === "Escape")) {
+      return;
+    }
+    lightBox.close();
+  });
 }
 
 function createMarcup(images) {
