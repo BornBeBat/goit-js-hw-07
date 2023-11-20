@@ -1,10 +1,9 @@
 import { galleryItems } from "./gallery-items.js";
-// Change code below this line
+
 const marcupConteiner = document.querySelector(".gallery");
 const cardsMarcup = createMarcup(galleryItems);
 
 marcupConteiner.insertAdjacentHTML("beforeend", cardsMarcup);
-
 marcupConteiner.addEventListener("click", onClick);
 
 function onClick(event) {
