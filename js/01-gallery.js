@@ -4,26 +4,33 @@ const marcupConteiner = document.querySelector(".gallery");
 const cardsMarcup = createMarcup(galleryItems);
 
 marcupConteiner.insertAdjacentHTML("beforeend", cardsMarcup);
+const lightBox = basicLightbox.create(`<img src="" width="800" height="600">`, {
+  onShow: (lightBox) => {
+    document.addEventListener("keydown", onEscapeClick);
+  },
+  onClose: (lightBox) => {
+    document.removeEventListener("keydown", onEscapeClick);
+  },
+});
+
 marcupConteiner.addEventListener("click", onClick);
 
 function onClick(event) {
   const { target = event.target } = event;
   event.preventDefault();
-  if (!target.classList.contains("gallery__image")) {
+  if (target.nodeName !== "IMG") {
     return;
   }
-  const lightBox = basicLightbox.create(
-    `<img src="${target.dataset.source}" width="800" height="600">`
-  );
-
+  lightBox.element().querySelector("img").src = target.dataset.source;
   lightBox.show();
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      lightBox.close();
-      document.removeEventListener("keydown");
-      return;
-    }
-  });
+}
+
+function onEscapeClick(event) {
+  if (event.key === "Escape") {
+    lightBox.close();
+    document.removeEventListener("keydown");
+    return;
+  }
 }
 
 function createMarcup(images) {
