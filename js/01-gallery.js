@@ -28,7 +28,6 @@ function onClick(event) {
 function onEscapeClick(event) {
   if (event.key === "Escape") {
     lightBox.close();
-    document.removeEventListener("keydown");
     return;
   }
 }
