@@ -2,7 +2,6 @@ import { galleryItems } from "./gallery-items.js";
 
 const marcupConteiner = document.querySelector(".gallery");
 const cardsMarcup = createMarcup(galleryItems);
-
 marcupConteiner.insertAdjacentHTML("beforeend", cardsMarcup);
 
 const gallery = new SimpleLightbox(".gallery a", {
