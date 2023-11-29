@@ -8,6 +8,7 @@ const lightBox = basicLightbox.create(`<img src="" width="800" height="600">`, {
     document.removeEventListener("keydown", onEscapeClick);
   },
 });
+console.log(lightBox);
 const marcupConteiner = document.querySelector(".gallery");
 const cardsMarcup = createMarcup(galleryItems);
 
@@ -20,7 +21,7 @@ function onClick(event) {
 
   if (target.nodeName !== "IMG") return;
 
-  lightBox.element.querySelector("img").src = target.dataset.source;
+  lightBox.element().querySelector("img").src = target.dataset.source;
   lightBox.show();
 }
 
@@ -43,6 +44,5 @@ function createMarcup(images) {
 function onEscapeClick(event) {
   if (event.key === "Escape") {
     lightBox.close();
-    return;
   }
 }
