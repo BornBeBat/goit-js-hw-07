@@ -1,6 +1,6 @@
 import { galleryItems } from "./gallery-items.js";
 
-const lightBox = basicLightbox.create(`<img src="" width="800" height="600">`, {
+const lightBox = basicLightbox.create(`<img width="1400" height="900">`, {
   onShow: (lightBox) => {
     document.addEventListener("keydown", onEscapeClick);
   },
@@ -8,7 +8,7 @@ const lightBox = basicLightbox.create(`<img src="" width="800" height="600">`, {
     document.removeEventListener("keydown", onEscapeClick);
   },
 });
-console.log(lightBox);
+
 const marcupConteiner = document.querySelector(".gallery");
 const cardsMarcup = createMarcup(galleryItems);
 
