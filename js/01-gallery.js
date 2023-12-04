@@ -1,24 +1,21 @@
 import { galleryItems } from "./gallery-items.js";
 
 const lightBox = basicLightbox.create(`<img width="1400" height="900">`, {
-  onShow: (lightBox) => {
+  onShow: () => {
     document.addEventListener("keydown", onEscapeClick);
   },
-  onClose: (lightBox) => {
+  onClose: () => {
     document.removeEventListener("keydown", onEscapeClick);
   },
 });
 
 const marcupConteiner = document.querySelector(".gallery");
-const cardsMarcup = createMarcup(galleryItems);
-
-marcupConteiner.insertAdjacentHTML("beforeend", cardsMarcup);
+marcupConteiner.insertAdjacentHTML("beforeend", createMarcup(galleryItems));
 marcupConteiner.addEventListener("click", onClick);
 
 function onClick(event) {
-  const { target = event.target } = event;
   event.preventDefault();
-
+  const { target = event.target } = event;
   if (target.nodeName !== "IMG") return;
 
   lightBox.element().querySelector("img").src = target.dataset.source;
@@ -26,8 +23,9 @@ function onClick(event) {
 }
 
 function createMarcup(images) {
-  const marcup = images.map(({ preview, original, description }) => {
-    return `<li class="gallery__item">
+  return images
+    .map(({ preview, original, description }) => {
+      return `<li class="gallery__item">
     <a class="gallery__link" href="${original}">
     <img
       class="gallery__image"
@@ -37,8 +35,8 @@ function createMarcup(images) {
     />
     </a>
     </li>`;
-  });
-  return marcup.join("");
+    })
+    .join("");
 }
 
 function onEscapeClick(event) {
